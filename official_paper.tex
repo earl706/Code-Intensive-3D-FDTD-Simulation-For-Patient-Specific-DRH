@@ -190,6 +190,7 @@ This study adopts a computational simulation approach using Python to implement 
     \item Time step ($\Delta t$) determined by the Courant stability condition: $\Delta t \leq \frac{1}{c\sqrt{1/(\Delta x)^2 + 1/(\Delta y)^2 + 1/(\Delta z)^2}}$, where $c$ is the speed of light in the medium
     \item Perfectly Matched Layer (PML) thickness, typically 8--16 cells with polynomial grading
     \item Operating frequency for hyperthermia applicators (typically 50--150 MHz for deep regional hyperthermia)
+    \item Excitation parameters: wave type (e.g., plane wave via TFSF or antenna soft source), polarization, frequency $f$, wavelength $\lambda$ in free space and tissue, source amplitude $A$, and phase $\phi$ (for multi-antenna phase control)
 \end{itemize}
 
 \subsection{Procedures}
@@ -237,6 +238,8 @@ Electromagnetic sources representing hyperthermia antennas are placed in the sim
 \end{itemize}
 
 For hyperthermia applications, sources are typically implemented as soft sources with sinusoidal time dependence at the operating frequency. Sources are characterized by frequency $f$, amplitude $A$, and phase $\phi$, which can later be optimized. Multiple antenna sources can be placed at different spatial locations, each with independent phase and amplitude control, enabling beamforming and focusing strategies.
+
+In this study, the excitation is specified by: wave type (plane wave via TFSF or antenna soft source), frequency $f$ (e.g., 100 MHz within the 50--150 MHz band), polarization (e.g., linear along $\hat{x}$), and derived wavelength $\lambda$ in free space and in tissue to guide grid spacing. Source placement is defined in voxel coordinates for reproducibility, and phase offsets are used when evaluating multi-antenna focusing.
 
 \subsubsection{SAR Computation}
 
@@ -308,7 +311,7 @@ The scope of this study is defined by the following limitations:
 \begin{itemize}
     \item \textbf{Frequency-independent tissue properties}: The simulation assumes constant dielectric properties at a fixed operating frequency, reflecting typical clinical DRH systems that operate in narrow frequency bands (typically 50--150 MHz). This approximation is valid when tissue property variations over the operating bandwidth are negligible.
     \item \textbf{Voxel-based segmentation}: Patient-specific anatomical variability is limited to voxel-based tissue segmentation from CT or MRI data. Sub-voxel resolution and tissue boundary smoothing are not considered.
-\item \textbf{Simplified thermal modeling}: Temperature distributions are computed using the Pennes bioheat equation with constant thermal properties. Blood perfusion effects are either neglected or modeled with constant perfusion rates (no thermoregulatory feedback). Temperature-dependent dielectric and thermal properties are not included. The EM and thermal solvers are loosely coupled (one-way: EM $\rightarrow$ thermal), with no feedback from temperature to electromagnetic properties.
+    \item \textbf{Simplified thermal modeling}: Temperature distributions are computed using the Pennes bioheat equation with constant thermal properties. Blood perfusion effects are either neglected or modeled with constant perfusion rates (no thermoregulatory feedback). Temperature-dependent dielectric and thermal properties are not included. The EM and thermal solvers are loosely coupled (one-way: EM $\rightarrow$ thermal), with no feedback from temperature to electromagnetic properties.
     \item \textbf{No dispersive models}: Frequency-dependent dispersive tissue models (Debye or Lorentz formulations) are excluded from the current scope, though they may be incorporated in future extensions for broadband applications.
     \item \textbf{Computational constraints}: Practical simulations are limited by available computational resources. Typical grid sizes may range from $100^3$ to $500^3$ voxels, depending on resolution requirements and hardware capabilities.
 \end{itemize}

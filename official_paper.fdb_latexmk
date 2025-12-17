@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1765956985.10865 "/Users/earlbenedictc.dumaraog/reviewer/thesis/chapters_1-3.tex" "chapters_1-3.pdf" "chapters_1-3" 1765956985.75214 0
-  "/Users/earlbenedictc.dumaraog/reviewer/thesis/chapters_1-3.tex" 1765956984.77643 25373 342699c01ef5cf63bd63a0d41f4036c2 ""
+["pdflatex"] 1765962126.0442 "/Users/earlbenedictc.dumaraog/reviewer/thesis/official_paper.tex" "official_paper.pdf" "official_paper" 1765962126.68511 0
+  "/Users/earlbenedictc.dumaraog/reviewer/thesis/official_paper.tex" 1765962125.58736 29960 56614656711e4a745ab7d4b7b052ca95 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -118,12 +118,12 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1745843114 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "chapters_1-3.aux" 1765956985.67087 4144 a321668b154e32a3a2dafb658d96a59d "pdflatex"
-  "chapters_1-3.out" 1765956985.67139 3820 e773e4649b5bd6ac8bf01e2f4a6ce266 "pdflatex"
-  "chapters_1-3.tex" 1765956984.77643 25373 342699c01ef5cf63bd63a0d41f4036c2 ""
+  "official_paper.aux" 1765962126.60421 4655 a2aaaa4837b65b7a01dfdccf34aae265 "pdflatex"
+  "official_paper.out" 1765962126.60467 4266 386d6a60ca922f95b6088da93bf1caf7 "pdflatex"
+  "official_paper.tex" 1765962125.58736 29960 56614656711e4a745ab7d4b7b052ca95 ""
   (generated)
-  "chapters_1-3.aux"
-  "chapters_1-3.log"
-  "chapters_1-3.out"
-  "chapters_1-3.pdf"
+  "official_paper.aux"
+  "official_paper.log"
+  "official_paper.out"
+  "official_paper.pdf"
   (rewritten before read)

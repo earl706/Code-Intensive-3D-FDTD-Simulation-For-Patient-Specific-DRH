@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  17 DEC 2025 15:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  17 DEC 2025 17:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/earlbenedictc.dumaraog/reviewer/thesis/chapters_1-3_rev-1.tex
-(/Users/earlbenedictc.dumaraog/reviewer/thesis/chapters_1-3_rev-1.tex
+**/Users/earlbenedictc.dumaraog/reviewer/thesis/official_paper.tex
+(/Users/earlbenedictc.dumaraog/reviewer/thesis/official_paper.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -309,8 +309,8 @@ Package color Info: Driver file: pdftex.def on input line 149.
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count313
 \l__pdf_internal_box=\box65
-) (./chapters_1-3_rev-1.aux)
-\openout1 = `chapters_1-3_rev-1.aux'.
+) (./official_paper.aux)
+\openout1 = `official_paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
@@ -388,9 +388,9 @@ File: translations-basic-dictionary-english.trsl (english translation file `tran
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 38.
 Package hyperref Info: Link coloring ON on input line 38.
- (./chapters_1-3_rev-1.out) (./chapters_1-3_rev-1.out)
+ (./official_paper.out) (./official_paper.out)
 \@outlinefile=\write3
-\openout3 = `chapters_1-3_rev-1.out'.
+\openout3 = `official_paper.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 41.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -427,14 +427,14 @@ Overfull \hbox (32.17668pt too wide) in paragraph at lines 190--191
 [9]
 
 [10]
-Overfull \hbox (1.2495pt too wide) in paragraph at lines 285--286
+
+[11]
+Overfull \hbox (1.2495pt too wide) in paragraph at lines 288--289
 []\T1/cmr/bx/n/12 Scalability\T1/cmr/m/n/12 : Com-pu-ta-tional com-plex-ity anal-y-sis with re-spect to grid res-o-lu-tion ($\OML/cmm/m/it/12 O\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 N[]\OT1/cmr/m/n/12 )$
  []
 
 
-
-[11]
-Overfull \hbox (4.26387pt too wide) in paragraph at lines 298--299
+Overfull \hbox (4.26387pt too wide) in paragraph at lines 301--302
 []\T1/cmr/bx/n/12 Bibliographic val-i-da-tion\T1/cmr/m/n/12 : Com-par-i-son of SAR dis-tri-bu-tions and field pat-terns against
  []
 
@@ -444,24 +444,24 @@ Overfull \hbox (4.26387pt too wide) in paragraph at lines 298--299
 
 [13]
 
-[14] (./chapters_1-3_rev-1.aux)
+[14] (./official_paper.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-Package rerunfilecheck Info: File `chapters_1-3_rev-1.out' has not changed.
+Package rerunfilecheck Info: File `official_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 386D6A60CA922F95B6088DA93BF1CAF7;4266.
  ) 
 Here is how much of TeX's memory you used:
  14864 strings out of 473190
- 288192 string characters out of 5715801
- 659298 words of memory out of 5000000
+ 288116 string characters out of 5715801
+ 660278 words of memory out of 5000000
  37892 multiletter control sequences out of 15000+600000
  574960 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,80p,852b,1133s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,80p,848b,1131s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on chapters_1-3_rev-1.pdf (14 pages, 310532 bytes).
+Output written on official_paper.pdf (14 pages, 311311 bytes).
 PDF statistics:
  317 PDF objects out of 1000 (max. 8388607)
  261 compressed objects within 3 object streams
