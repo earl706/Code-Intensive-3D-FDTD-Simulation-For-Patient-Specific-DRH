@@ -1,0 +1,433 @@
+1D FDTD Simulation in free space
+    initialize simulation size, electric and magnetic field values
+    pulse parameters
+    main FDTD Loop
+        calculate the Ex field
+        put a Gaussian pulse in the middle
+        calculate the Hy field
+    animate
+
+1D FDTD Simulation in free space absorbing boundary conditions added
+    initialize simulation size, electric and magnetic field values
+    pulse parameters
+    absorbing boundary conditions
+    main FDTD Loop
+        calculate the Ex field
+        put a Gaussian pulse in the middle
+        absorbing Boundary Conditions
+        calculate the Hy field
+    animate
+
+1D FDTD Simulation of a pulse hitting a dielectric medium
+    initialize simulation size, electric and magnetic field values
+    create dielectric profile
+    absorbing boundary conditions
+    main FDTD Loop
+        calculate the Ex field
+        put a Gaussian pulse at the low end
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+1D FDTD Simulation of a sinusoidal wave hitting a dielectric medium
+    initialize simulation size, electric and magnetic field values
+    sinusoid wave parameters
+    pulse parameters
+    create dielectric profile
+    absorbing boundary conditions
+    main FDTD loop
+        calculate the Ex field
+        put a sinusoidal wave at the low end
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+1D FDTD Simulation of a sinusoidal wave hitting a lossy dielectric medium
+    initialize simulation size, electric and magnetic field values
+    sinusoid wave parameters
+    pulse parameters
+    create dielectric profile
+    absorbing boundary conditions
+    main FDTD loop
+        calculate the Ex field
+        put a sinusoidal wave at the low end
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+1D FDTD Simulation of a dielectric slab
+    initialize simulation size and field values
+    sinusoid wave parameters
+    pulse parameters
+    create dielectric profile
+        permittivity of free space
+        relative permittivity
+        electric permittivity
+        ...
+    absorbing boundary conditions
+    main FDTD loop
+        calculate the Dx
+        put a sinusoidal wave in the low end
+        calculate the Ex field from Dx
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+1D FDTD The Fourier Transform has been added
+    initialize simulation size and field values
+    sinusoid wave parameters
+    pulse parameters
+    create dielectric profile
+        permittivity of free space
+        relative permittivity
+        electric permittivity
+        ...
+    absorbing boundary conditions
+    fourier transform
+    main FDTD loop
+        calculate the Dx
+        put a sinusoidal wave in the low end
+        calculate the Ex field from Dx
+        calculate fourier transform of Ex
+        fourier transform of the input pulse
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+1D FDTD Simulation of a frequency dependent material
+    initialize simulation size and field values
+    sinusoid wave parameters
+    pulse parameters
+    create dielectric profile
+        permittivity of free space
+        relative permittivity
+        electric permittivity
+        relaxation time constant
+        electric susceptibility
+        ...
+    absorbing boundary conditions
+    fourier transform
+    main FDTD loop
+        calculate the Dx
+        put a Gaussian pulse in the low end
+        calculate the Ex field from Dx
+        calculate fourier transform of Ex
+        fourier transform of the input pulse
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+1D FDTD simulation of a sinusoidal-modulated Gaussian pulse hitting a dielectric medium
+    define signal
+    define constants
+    simulation size, step size, N space cells
+    time step, simulation time, N time steps
+    initialize electric and magnetic field values
+    material properties and coordinates
+    electric and magnetic field coefficients
+    absorbing boundary conditions
+    initialize time and pulse signal
+    source parameters
+    Fourier monitor
+    FDTD algorithm
+        update magnetic field at n+1/2
+        add magnetic field source
+        update electric field at n+1
+        add electric field source
+        boundary condition update
+        store reflection and transmission data
+    plot transmittance and reflectance
+    wavelengths, omegas, time
+    function for discrete fourier transform
+    function for thin film transmittance
+    pulse signal
+    calculate electric field transmittance and reflectance
+    calculate reflectance and transmittance
+    plot wavelengths, transmittance, and reflectance
+    animate
+
+2D FDTD TM program
+    simulation size
+    source position
+    field values
+    step size, time step
+    create dielectric profile
+    pulse parameters
+    main FDTD loop
+        calculate the Dz
+        put a Gaussian pulse in the middle
+        calculate the Ez field from Dz
+        calculate the Hx field
+        incident Hy values
+    animate
+
+2D FDTD TM program with PML added
+    simulation size
+    source position
+    field values
+    step size, time step
+    create dielectric profile
+    pulse parameters
+    calculate PML parameters
+    create PML
+    main FDTD loop
+        calculate the Dz
+        put a sinusoid wave in the middle
+        calculate the Ez field from Dz
+        calculate the Hx field
+        incident Hy values
+    animate
+
+2D FDTD TM program with plane wave source
+    simulation size
+    source position
+    field values
+    electric and magnetic incident
+    step size, time step
+    create dielectric profile
+    pulse parameters
+    calculate PML parameters
+    create PML
+    absorbing boundary conditions
+    main FDTD loop
+        incident Ez values
+        absorbing boundary conditions
+        calculate the Dz 
+        put a Gaussian pulse at low end
+        incident Dz values
+        calculate the Ez field from Dz
+        incident Hx values
+        calculate the Hx field
+        calculate incident Hy
+        incident Hy values
+        calculate the Hy field
+    animate
+
+2D FDTD TM simulation of a plane wave source impinging on a dielectric cylinder analysis using fourier transform
+    simulation size
+    source position
+    field values
+    electric and magnetic incident
+    step size, time step
+    fourier transform
+    specify dielectric cylinder
+    create dielectric profile
+    absorbing boundary conditions
+    calculate PML parameters
+    create PML
+    main FDTD loop
+        incident Ez values
+        absorbing boundary conditions
+        calculate the Dz 
+        source
+        incident Dz values
+        calculate the Ez field from Dz
+        calculate fourier transform of Ez
+        calculate incident Hx
+        calculate the Hx field
+        incident Hx values
+        calculate the Hy field
+        incident Hy values
+    animate
+
+3D FDTD simulation of Dipole in free space
+    simulation size
+    source position
+    field values
+    step size, time step
+    specify the dipole
+    pulse parameters
+    functions for main FDTD loop
+        calculate Dx, Dy, Dz fields
+        calculate E field from the D field
+        calculate Hx, Hy, Hz fields
+    main FDTD loop
+        calculate the D fields
+        add Gaussian source at the gap
+        calculate E field from the D field
+        calculate the H fields
+    animate
+
+3D FDTD simulation of plane wave on a dielectric sphere
+    functions for main FDTD loop
+        calculate PML parameters
+        calculate the Dx, Dy, Dz field
+        calculate the incident Dy, Dz field
+        calculate the E field from the D field
+        calculate the Fourier transform of Ex
+        calculate the Hx, Hy, Hz field
+        calculate incident Hx field
+        calculate Hx, Hy with incident Ez
+    simulation size
+    source position
+    field values
+    permittivity, conductivity, Hx/Ez incident
+    step size, time step
+    frequencies
+    fourier transform
+    specify the dielectric sphere
+    pulse parameters
+    calculate PML parameters
+    main FDTD loop
+        calculate incident buffer
+        fourier transform of the incident field
+        absorbing boundary conditions
+        calculate D fields
+        add Gaussian source at the gap
+        calculate the E field from D field
+        calculate fourier transform of Ex
+        calculate the H fields
+    calculate the fourier amplitude of the incident pulse
+    calculate the Fourier amplitude of the total field
+    plot the Fourier transform amplitude at a specific frequency
+    plot the results of the Fourier transform at each of the frequencies
+    animate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1D FDTD simulation in free space
+    i
+    p
+    m
+        c
+        p
+        c
+    a
+1D FDTD Simulation in free space absorbing boundary conditions added
+    i
+    p
+    a
+    m
+        c
+        p
+        a
+        c
+    a
+1D FDTD Simulation of a pulse hitting a dielectric medium
+    i
+    c
+    a
+    m
+        c
+        p
+        a
+        c
+    a
+1D FDTD Simulation of a sinusoidal wave hitting a dielectric medium
+    i
+    s
+    p
+    c
+    a
+    m
+        c
+        p
+        a
+        c
+    a
+1D FDTD Simulation of a sinusoidal wave hitting a lossy dielectric medium
+    i
+    s
+    p
+    c
+    a
+    m
+        c
+        p
+        a
+        c
+    a
+
+1D FDTD simulation in free space
+1D FDTD simulation in free space absorbing boundary conditions added
+1D FDTD simulation of a pulse hitting a dielectric medium
+1D FDTD simulation of a sinusoidal wave hitting a dielectric medium
+1D FDTD simulation of a sinusoidal wave hitting a lossy dielectric medium
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+()

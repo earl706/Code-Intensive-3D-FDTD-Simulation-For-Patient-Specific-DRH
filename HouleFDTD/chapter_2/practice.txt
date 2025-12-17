@@ -1,0 +1,66 @@
+1D FDTD Simulation of a dielectric slab
+    initialize simulation size and field values
+    sinusoid wave parameters
+    pulse parameters
+    create dielectric profile
+        permittivity of free space
+        relative permittivity
+        electric permittivity
+        ...
+    absorbing boundary conditions
+    main FDTD loop
+        calculate the Dx
+        put a sinusoidal wave in the low end
+        calculate the Ex field from Dx
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+1D FDTD The Fourier Transform has been added
+    initialize simulation size and field values
+    sinusoid wave parameters
+    pulse parameters
+    create dielectric profile
+        permittivity of free space
+        relative permittivity
+        electric permittivity
+        ...
+    absorbing boundary conditions
+    fourier transform
+    main FDTD loop
+        calculate the Dx
+        put a sinusoidal wave in the low end
+        calculate the Ex field from Dx
+        calculate fourier transform of Ex
+        fourier transform of the input pulse
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+1D FDTD Simulation of a frequency dependent material
+    initialize simulation size and field values
+    sinusoid wave parameters
+    pulse parameters
+    create dielectric profile
+        permittivity of free space
+        relative permittivity
+        electric permittivity
+        relaxation time constant
+        electric susceptibility
+        ...
+    absorbing boundary conditions
+    fourier transform
+    main FDTD loop
+        calculate the Dx
+        put a sinusoidal wave in the low end
+        calculate the Ex field from Dx
+        calculate fourier transform of Ex
+        fourier transform of the input pulse
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+
+
+
+

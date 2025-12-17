@@ -1,0 +1,71 @@
+(1) 1D FDTD Simulation in free space
+    initialize simulation size, electric and magnetic field values
+    pulse parameters
+    main FDTD Loop
+        calculate the Ex field
+        put a Gaussian pulse in the middle
+        calculate the Hy field
+    animate
+
+(2) 1D FDTD Simulation in free space absorbing boundary conditions added
+    initialize simulation size, electric and magnetic field values
+    pulse parameters
+    absorbing boundary conditions
+    main FDTD Loop
+        calculate the Ex field
+        put a Gaussian pulse in the middle
+        absorbing Boundary Conditions
+        calculate the Hy field
+    animate
+
+(3) 1D FDTD Simulation of a pulse hitting a dielectric medium
+    initialize simulation size, electric and magnetic field values
+    create dielectric profile
+    absorbing boundary conditions
+    main FDTD Loop
+        calculate the Ex field
+        put a Gaussian pulse at the low end
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+(4) 1D FDTD Simulation of a sinusoidal wave hitting a dielectric medium
+    initialize simulation size, electric and magnetic field values
+    sinusoid wave parameters
+    pulse parameters
+    create dielectric profile
+    absorbing boundary conditions
+    main FDTD loop
+        calculate the Ex field
+        put a sinusoidal wave at the low end
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+(5) 1D FDTD Simulation of a sinusoidal wave hitting a lossy dielectric medium
+    initialize simulation size, electric and magnetic field values
+    sinusoid wave parameters
+    pulse parameters
+    create dielectric profile
+    absorbing boundary conditions
+    main FDTD loop
+        calculate the Ex field
+        put a sinusoidal wave at the low end
+        absorbing boundary conditions
+        calculate the Hy field
+    animate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(|)

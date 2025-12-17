@@ -1,0 +1,96 @@
+(1) TM program
+    simulation size
+    source position
+    field values
+    step size, time step
+    create dielectric profile
+    pulse parameters
+    main FDTD loop
+        calculate the Dz
+        put a Gaussian pulse in the middle
+        calculate the Ez field from Dz
+        calculate the Hx field
+        incident Hy values
+    animate
+
+(2) TM program with PML added
+    simulation size
+    source position
+    field values
+    step size, time step
+    create dielectric profile
+    pulse parameters
+    calculate PML parameters
+    create PML
+    main FDTD loop
+        calculate the Dz
+        put a sinusoid wave in the middle
+        calculate the Ez field from Dz
+        calculate the Hx field
+        incident Hy values
+    animate
+
+(3) TM program with plane wave source
+    simulation size
+    source position
+    field values
+    electric and magnetic incident
+    step size, time step
+    create dielectric profile
+    pulse parameters
+    calculate PML parameters
+    create PML
+    absorbing boundary conditions
+    main FDTD loop
+        incident Ez values
+        absorbing boundary conditions
+        calculate the Dz 
+        put a Gaussian pulse at low end
+        incident Dz values
+        calculate the Ez field from Dz
+        incident Hx values
+        calculate the Hx field
+        calculate incident Hy
+        incident Hy values
+        calculate the Hy field
+    animate
+
+(4) TM simulation of a plane wave source impinging on a dielectric cylinder analysis using fourier transform
+    simulation size
+    source position
+    field values
+    electric and magnetic incident
+    step size, time step
+    fourier transform
+    specify dielectric cylinder
+    create dielectric profile
+    absorbing boundary conditions
+    calculate PML parameters
+    create PML
+    main FDTD loop
+        incident Ez values
+        absorbing boundary conditions
+        calculate the Dz 
+        source
+        incident Dz values
+        calculate the Ez field from Dz
+        calculate fourier transform of Ez
+        calculate incident Hx
+        calculate the Hx field
+        incident Hx values
+        calculate the Hy field
+        incident Hy values
+    animate
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,352 @@
+\documentclass[12pt,letterpaper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+% Page setup
+\geometry{margin=1in}
+\onehalfspacing
+
+% Title information
+\title{Code-Intensive 3D FDTD Simulation for Patient-Specific Deep Regional Hyperthermia}
+\author{
+    Earl Benedict C. Dumaraog \\
+    \\
+    {Research Advisor: Ruelson Solidum, M.S.}
+}
+\date{}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=blue
+}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+% CHAPTER 1: INTRODUCTION
+\section{Introduction}
+
+\subsection{Background of the Study}
+
+Cancer remains one of the leading causes of mortality worldwide, and its treatment often relies on a combination of surgery, chemotherapy, and radiotherapy. In recent decades, Deep Regional Hyperthermia (DRH) has emerged as an effective adjunct therapy, in which malignant tissues are selectively heated to temperatures between \SI{40}{\degreeCelsius}--\SI{45}{\degreeCelsius} to enhance the sensitivity of tumor cells to radiation and chemotherapeutic agents \cite{wust2002, vanderzee2002}. Clinical studies have shown that controlled heating improves treatment outcomes while minimizing damage to surrounding healthy tissue.
+
+A central challenge in DRH is the accurate delivery of electromagnetic energy to deep-seated tumors. Due to the heterogeneous electrical properties of biological tissues, electromagnetic waves propagate non-uniformly within the human body, making treatment planning a nontrivial problem. As a result, computational electromagnetic modeling has become an essential component of modern hyperthermia treatment planning \cite{taflove2005}.
+
+Among numerical techniques, the Finite-Difference Time-Domain (FDTD) method is particularly well-suited for simulating electromagnetic wave propagation in complex, three-dimensional, heterogeneous media. FDTD directly solves Maxwell's equations in the time domain, allowing detailed prediction of electric and magnetic field distributions within voxel-based anatomical models \cite{taflove2005}. These field distributions can then be used to compute Specific Absorption Rate (SAR), a key metric that quantifies electromagnetic energy absorption in biological tissues.
+
+Temperature rise resulting from SAR deposition is the ultimate therapeutic endpoint, making thermal modeling a natural extension of electromagnetic energy deposition analysis.
+
+\cite{houle2019} demonstrated the applicability of FDTD to deep regional hyperthermia treatment planning through a three-dimensional simulation example implemented in Python. Their work illustrates how voxelized tissue models, frequency-independent dielectric properties, and absorbing boundary conditions can be combined to generate SAR maps for treatment analysis. While this example effectively demonstrates the feasibility of FDTD-based DRH simulations, it serves primarily as an educational and demonstrative application, rather than a fully extensible, research-oriented framework.
+
+\subsection{Problem Statement}
+
+Despite the demonstrated effectiveness of FDTD for hyperthermia modeling, accessible and transparent simulation frameworks for DRH remain limited. Many existing tools are proprietary or lack open, code-intensive implementations that allow full customization, validation, and extension by researchers. This limitation restricts reproducibility and hampers further development of patient-specific optimization strategies.
+
+\subsection{Objectives of the Study}
+
+This thesis has five main objectives, all focused on developing a code-intensive computational framework for deep regional hyperthermia:
+
+\begin{enumerate}
+    \item To construct voxel-based, patient-specific tissue models from CT or MRI data, assigning appropriate dielectric and physical properties to each tissue type.
+    
+    \item To implement a full 3D Finite-Difference Time-Domain (FDTD) solver in Python, capable of simulating electromagnetic wave propagation in heterogeneous biological tissue.
+    
+    \item To compute voxel-wise Specific Absorption Rate (SAR) distributions and corresponding temperature rise predictions, enabling quantitative assessment of electromagnetic energy deposition and thermal response in tumors and surrounding healthy tissue.
+    
+    \item To develop a programmatic antenna optimization framework, adjusting antenna phase, amplitude, and spatial configuration to maximize tumor heating while minimizing unwanted hot spots.
+    
+    \item To evaluate the computational performance and scalability of the solver, ensuring feasibility for high-resolution, patient-specific 3D simulations.
+\end{enumerate}
+
+\subsection{Significance of the Study}
+
+This study emphasizes the development of a scalable and efficient computational framework rather than direct clinical deployment. By focusing on code transparency, numerical accuracy, and performance evaluation, the proposed work aims to serve as a reproducible research platform for future hyperthermia studies.
+
+\subsection{Scope and Limitations}
+
+This study focuses on frequency-independent tissue models, which are commonly used in clinical hyperthermia simulations due to the narrow operating frequency range of DRH systems \cite{houle2019}. Thermal feedback, blood perfusion effects, and frequency-dispersive tissue models are excluded from the current scope and are identified as potential directions for future work.
+
+\newpage
+
+% CHAPTER 2: REVIEW OF RELATED LITERATURE
+\section{Review of Related Literature}
+
+\subsection{Deep Regional Hyperthermia and Computational Modeling}
+
+Deep Regional Hyperthermia (DRH) is a clinically established adjunct cancer therapy that aims to elevate tumor temperatures to approximately \SI{40}{\degreeCelsius}--\SI{45}{\degreeCelsius} using electromagnetic (EM) energy. At this temperature range, tumor cells become more sensitive to chemotherapy and radiotherapy while maintaining acceptable thermal tolerance in surrounding healthy tissues. The effectiveness of DRH strongly depends on accurate energy focusing, making treatment planning a critical component of the therapy process.
+
+Computational electromagnetic modeling has become an essential tool in DRH treatment planning. Among various numerical methods, the Finite-Difference Time-Domain (FDTD) method has been widely adopted due to its ability to model transient electromagnetic wave propagation in complex, heterogeneous media. \cite{taflove2005} established FDTD as a robust and versatile technique for solving Maxwell's equations in three-dimensional domains, particularly for biomedical applications involving lossy dielectric materials such as biological tissues.
+
+\cite{houle2019} demonstrated the application of FDTD in deep regional hyperthermia treatment planning through voxel-based simulations of electromagnetic field propagation in anatomically realistic tissue models. Their work illustrates how spatially varying tissue properties, such as permittivity and conductivity, can be incorporated into a 3D grid to compute electromagnetic field distributions and Specific Absorption Rate (SAR) patterns. The book presents DRH as an application example that integrates FDTD theory, Python implementation, and SAR visualization, providing a clear educational framework for understanding computational hyperthermia modeling.
+
+Several research studies have also employed FDTD-based solvers to analyze SAR distributions in biological tissues for hyperthermia and microwave exposure studies. These simulations often rely on frequency-independent tissue models, where dielectric properties are assumed constant at a fixed operating frequency. This approximation is considered valid for narrowband hyperthermia systems, as the variation of tissue properties over the operating frequency range is relatively small. Frequency-dependent dispersive models, such as Debye or Lorentz formulations, are more commonly used in broadband microwave imaging or spectroscopy applications but are not always necessary for clinical hyperthermia planning.
+
+Despite the demonstrated effectiveness of FDTD for DRH simulations, many existing tools are either proprietary or implemented in closed research environments. Educational examples, such as those presented by \cite{houle2019}, provide valuable insight but are not designed as fully extensible, research-oriented platforms. This creates a gap for a code-intensive, open, and customizable 3D FDTD framework that focuses on transparent implementation, reproducibility, and extensibility for patient-specific DRH treatment planning.
+
+\subsection{Bioheat Transfer in Hyperthermia}
+
+The temperature field resulting from electromagnetic energy deposition is commonly modeled with the Pennes bioheat equation, which adds perfusion-mediated cooling and thermal conduction to a volumetric heat source. For hyperthermia treatment planning, simplified forms---steady-state, constant thermal properties, and one-way coupling from SAR---are frequently used in initial studies. These approximations provide conservative temperature estimates while avoiding the complexity of nonlinear thermoregulation or temperature-dependent properties.
+
+Early work by Pennes (1948) and subsequent reviews (e.g., Shitzer \& Eberhart; Paulides et al.) establish the use of bioheat models for therapeutic heating. In many DRH simulation studies, perfusion is either neglected or treated as a constant sink term, and material properties are held fixed over the therapeutic range (40--45\si{\degreeCelsius}). This level of modeling fidelity is suitable for baseline treatment assessment and for evaluating energy focusing strategies based on SAR-to-temperature conversion.
+
+More advanced models incorporate temperature-dependent perfusion and metabolic heat, but these are beyond the present scope and can be considered future extensions once the baseline SAR-to-temperature pipeline is validated.
+
+\subsection{Theoretical Framework}
+
+The theoretical foundation of this study is based on Maxwell's equations, which govern the behavior of electromagnetic fields in space and time. In lossy dielectric media such as biological tissue, these equations are expressed as:
+
+\begin{align}
+    \nabla \times \mathbf{E} &= -\mu \frac{\partial \mathbf{H}}{\partial t} \label{eq:faraday} \\
+    \nabla \times \mathbf{H} &= \sigma \mathbf{E} + \varepsilon \frac{\partial \mathbf{E}}{\partial t} \label{eq:ampere} \\
+    \nabla \cdot \mathbf{E} &= \frac{\rho}{\varepsilon} \label{eq:gauss_e} \\
+    \nabla \cdot \mathbf{H} &= 0 \label{eq:gauss_h}
+\end{align}
+
+where $\mathbf{E}$ is the electric field, $\mathbf{H}$ is the magnetic field, $\mu$ is the magnetic permeability, $\varepsilon$ is the permittivity, $\sigma$ is the electrical conductivity, and $\rho$ is the charge density. For biological tissues, the charge density $\rho$ is typically zero, and the permittivity $\varepsilon$ and conductivity $\sigma$ vary spatially according to tissue type. These equations describe how electromagnetic waves propagate and interact with lossy dielectric materials, making them essential for modeling energy deposition in biological tissues.
+
+The FDTD method discretizes these equations in both space and time, allowing electric and magnetic field components to be updated iteratively on a three-dimensional Yee grid. The Yee grid, introduced by \cite{taflove2005}, uses a staggered spatial arrangement where electric and magnetic field components are positioned at half-integer offsets from each other. This arrangement naturally enforces the curl relationships in Maxwell's equations and ensures numerical stability. The time-stepping approach uses a leapfrog scheme, where electric and magnetic fields are updated alternately at half-time-step intervals. This enables the simulation of electromagnetic wave propagation through heterogeneous tissue structures with spatially varying material properties.
+
+To model open-domain electromagnetic propagation, Perfectly Matched Layers (PML) are implemented at the simulation boundaries. PML regions absorb outgoing waves and prevent artificial reflections that could otherwise distort field and SAR calculations. The PML technique, introduced by \cite{berenger1994}, uses anisotropic absorbing media that match the impedance of the computational domain, effectively absorbing waves regardless of their angle of incidence. Typically, PML thicknesses of 8--16 cells are used, with polynomial or geometric grading of the absorption profile. This boundary treatment is essential for accurately modeling hyperthermia applicators and patient geometries in finite computational domains.
+
+The primary output of the electromagnetic simulation is the Specific Absorption Rate (SAR), which quantifies the rate at which electromagnetic energy is absorbed by tissue. SAR is defined as:
+
+\begin{equation}
+    \text{SAR}(i,j,k) = \frac{\sigma(i,j,k) |\mathbf{E}(i,j,k)|^2}{2\rho(i,j,k)}
+    \label{eq:sar_general}
+\end{equation}
+
+where $\sigma$ is the electrical conductivity, $|\mathbf{E}|$ is the magnitude of the electric field, and $\rho$ is the tissue mass density. SAR has units of \si{\watt\per\kilogram} and represents the power absorbed per unit mass of tissue. SAR distributions serve as a key metric for evaluating heating effectiveness in tumor regions while monitoring exposure in healthy tissues, as higher SAR values correspond to greater energy deposition and potential temperature rise.
+
+The corresponding temperature distribution can be modeled by the Pennes bioheat equation. In steady-state form with perfusion, it is written as:
+\begin{equation}
+    \nabla \cdot (k \nabla T) + \rho_b c_b \omega_b (T_a - T) + \text{SAR} \cdot \rho = 0
+    \label{eq:pennes_steady}
+\end{equation}
+where $k$ is thermal conductivity, $T$ is temperature, $\rho_b$ is blood density, $c_b$ is blood specific heat, $\omega_b$ is blood perfusion rate, $T_a$ is arterial blood temperature, and $\rho$ is tissue density.
+
+For the simplified case used in this work (no perfusion sink term), the equation reduces to:
+\begin{equation}
+    \nabla \cdot (k \nabla T) + \text{SAR} \cdot \rho = 0
+    \label{eq:pennes_simple}
+\end{equation}
+
+SAR from the FDTD solution couples into the bioheat equation as a volumetric heat source:
+\begin{equation}
+    Q = \text{SAR} \cdot \rho = \frac{\sigma |\mathbf{E}|^{2}}{2}
+    \label{eq:heat_source}
+\end{equation}
+This establishes a one-way coupling from electromagnetic energy deposition (SAR) to thermal response.
+
+This theoretical framework integrates electromagnetic field theory, numerical methods, and biomedical modeling to support a computational approach for DRH treatment planning. By combining FDTD-based field computation with SAR analysis, the study establishes a foundation for optimizing antenna configurations and improving the precision of deep regional hyperthermia simulations.
+
+\newpage
+
+% CHAPTER 3: METHODOLOGY
+\section{Methodology}
+
+\subsection{Research Design}
+
+This study adopts a computational simulation approach using Python to implement a three-dimensional Finite-Difference Time-Domain (FDTD) solver for Deep Regional Hyperthermia (DRH) treatment planning. The research focuses on developing a code-intensive, patient-specific simulation framework capable of calculating electromagnetic field propagation, Specific Absorption Rate (SAR) distributions, and optimized antenna configurations.
+
+\subsection{Materials and Tools}
+
+\textbf{Programming Language:} Python 3.8 or higher
+
+\textbf{Libraries:}
+\begin{itemize}
+    \item NumPy (for array operations and vectorized computations)
+    \item Matplotlib/Mayavi/Plotly (for 3D visualization)
+    \item Optionally PyTorch (for GPU acceleration)
+\end{itemize}
+
+\textbf{Data Inputs:}
+\begin{itemize}
+    \item Voxel-based tissue maps derived from CT or MRI scans
+    \item Tissue electromagnetic properties (permittivity $\varepsilon$, conductivity $\sigma$, density $\rho$) obtained from literature databases (e.g., \cite{icnirp2010}) or experimental measurements
+    \item Tissue thermal properties: thermal conductivity $k$ (W/m$\cdot$K) and specific heat capacity $c$ (J/kg$\cdot$K); optional blood perfusion parameters for simplified perfusion modeling
+\end{itemize}
+
+\textbf{Simulation Parameters:}
+\begin{itemize}
+    \item Grid resolution ($\Delta x$, $\Delta y$, $\Delta z$), typically chosen to resolve the smallest features of interest (e.g., 1--5 mm for anatomical models)
+    \item Time step ($\Delta t$) determined by the Courant stability condition: $\Delta t \leq \frac{1}{c\sqrt{1/(\Delta x)^2 + 1/(\Delta y)^2 + 1/(\Delta z)^2}}$, where $c$ is the speed of light in the medium
+    \item Perfectly Matched Layer (PML) thickness, typically 8--16 cells with polynomial grading
+    \item Operating frequency for hyperthermia applicators (typically 50--150 MHz for deep regional hyperthermia)
+\end{itemize}
+
+\subsection{Procedures}
+
+\subsubsection{Voxel-based Tissue Modeling}
+
+\begin{itemize}
+    \item Patient-specific tissue maps are imported and converted into a 3D voxel grid.
+    \item Each voxel is assigned material properties: permittivity ($\varepsilon$), conductivity ($\sigma$), and mass density ($\rho$). Tissue property databases provide frequency-dependent values for common tissue types (muscle, fat, bone, etc.), which are assigned based on tissue segmentation labels.
+\end{itemize}
+
+\subsubsection{FDTD Solver Implementation}
+
+Maxwell's equations are discretized using finite differences on a Yee grid, where electric field components ($E_x$, $E_y$, $E_z$) are located at integer grid positions and magnetic field components ($H_x$, $H_y$, $H_z$) are offset by half a cell. The FDTD update equations for the electric and magnetic fields use a leapfrog time-stepping scheme and can be expressed in vector form as:
+
+\begin{align}
+    \mathbf{H}^{n+\frac{1}{2}} 
+        &= \mathbf{H}^{n-\frac{1}{2}} 
+         - \frac{\Delta t}{\mu}
+           \left( \nabla \times \mathbf{E}^{n} \right) \label{eq:h_update} \\[1.5ex]
+    \mathbf{E}^{n+1} 
+        &= \frac{1 - \frac{\sigma \Delta t}{2 \varepsilon}}
+                {1 + \frac{\sigma \Delta t}{2 \varepsilon}}
+           \mathbf{E}^{n}
+         + \frac{\Delta t / \varepsilon}
+                {1 + \frac{\sigma \Delta t}{2 \varepsilon}}
+           \left( \nabla \times \mathbf{H}^{n+\frac{1}{2}} \right) \label{eq:e_update}
+\end{align}
+
+where the superscript $n$ denotes the time step, and the curl operators are discretized using central differences. The update equations are applied component-wise: for example, $E_x$ at position $(i+\tfrac{1}{2},j,k)$ is updated using $H_y$ and $H_z$ components at adjacent positions. Similar update equations apply for $E_y$, $E_z$, and the magnetic field components $H_x$, $H_y$, $H_z$, with appropriate spatial offsets according to the Yee grid arrangement. The factor $\frac{1 - \sigma \Delta t/(2\varepsilon)}{1 + \sigma \Delta t/(2\varepsilon)}$ accounts for energy loss due to conductivity in lossy dielectric media.
+
+\begin{itemize}
+    \item The solver updates electric and magnetic field arrays at each voxel iteratively over time.
+    \item Perfectly Matched Layers (PML) are implemented at the domain boundaries to absorb outgoing waves and prevent artificial reflections.
+\end{itemize}
+
+\subsubsection{Source Injection and Antenna Modeling}
+
+Electromagnetic sources representing hyperthermia antennas are placed in the simulation domain. Sources can be implemented using several methods:
+
+\begin{itemize}
+    \item \textbf{Hard source}: Direct assignment of field values at source locations, suitable for simple point sources
+    \item \textbf{Soft source}: Addition of source fields to existing fields, allowing waves to pass through source regions
+    \item \textbf{Total Field/Scattered Field (TFSF)}: Separation of incident and scattered fields, useful for plane wave excitation
+\end{itemize}
+
+For hyperthermia applications, sources are typically implemented as soft sources with sinusoidal time dependence at the operating frequency. Sources are characterized by frequency $f$, amplitude $A$, and phase $\phi$, which can later be optimized. Multiple antenna sources can be placed at different spatial locations, each with independent phase and amplitude control, enabling beamforming and focusing strategies.
+
+\subsubsection{SAR Computation}
+
+After field stabilization, which is determined by running the simulation for a sufficient number of time steps (typically 5--10 periods of the excitation frequency) or until the field energy reaches a steady state, Specific Absorption Rate (SAR) is computed voxel-wise using:
+
+\begin{equation}
+    \text{SAR}(i,j,k) = \frac{\sigma(i,j,k) |\mathbf{E}(i,j,k)|^2}{2\rho(i,j,k)}
+    \label{eq:sar}
+\end{equation}
+
+where $|\mathbf{E}(i,j,k)|$ is the root-mean-square (RMS) magnitude of the electric field at voxel $(i,j,k)$, computed from the time-averaged field values. SAR maps provide visual and quantitative assessment of energy deposition in tumors and surrounding tissues, enabling identification of hot spots and evaluation of treatment effectiveness.
+
+\subsubsection{Thermal Solver Implementation}
+
+Following SAR computation, temperature distributions are calculated on the same voxel grid using a finite-difference discretization of the Pennes bioheat equation. In this work, a simplified steady-state form without perfusion is solved:
+\[
+    \nabla \cdot (k \nabla T) + \text{SAR} \cdot \rho = 0.
+\]
+The Laplacian is discretized with central differences. Boundary conditions use fixed temperature (Dirichlet, $T = 37^{\circ}\mathrm{C}$) at the domain boundaries; insulated (Neumann) boundaries may be used if justified. The resulting linear system is solved with iterative methods (e.g., Gauss-Seidel or conjugate gradient) or a direct solver for smaller grids. Coupling is one-way: the EM simulation provides SAR, which is converted to a heat source $Q = \text{SAR} \cdot \rho$; no feedback from temperature to EM properties is included.
+
+\subsubsection{Antenna Optimization}
+
+Antenna parameters (phase, amplitude, and orientation) are optimized to maximize tumor SAR while minimizing healthy tissue exposure. The optimization objective function $J$ is defined as the ratio of average SAR in the tumor region to average SAR in healthy tissue regions:
+
+\begin{align}
+    \overline{\text{SAR}}_{\text{tumor}} 
+        &= \frac{1}{V_{\text{tumor}}} \int_{V_{\text{tumor}}} \text{SAR} \, dV \\[2ex]
+    \overline{\text{SAR}}_{\text{healthy}} 
+        &= \frac{1}{V_{\text{healthy}}} \int_{V_{\text{healthy}}} \text{SAR} \, dV \\[2ex]
+    J 
+        &= \frac{\overline{\text{SAR}}_{\text{tumor}}}{\overline{\text{SAR}}_{\text{healthy}}}
+        \label{eq:optimization}
+\end{align}
+
+where $V_{\text{tumor}}$ and $V_{\text{healthy}}$ are the volumes of the tumor and healthy tissue regions, respectively. The goal is to maximize $J$, which corresponds to maximizing energy deposition in the tumor while minimizing exposure in surrounding healthy tissues. In practice, the integrals are computed as discrete sums over voxels within each region.
+
+Optimization may be implemented using grid search, gradient-based methods (e.g., conjugate gradient, quasi-Newton methods), or heuristic approaches (e.g., genetic algorithms, particle swarm optimization) depending on computational resources and the number of optimization parameters.
+
+\subsubsection{Performance Evaluation}
+
+The solver's performance will be evaluated in terms of:
+
+\begin{itemize}
+    \item \textbf{Runtime}: Wall-clock time for complete simulations, measured for various grid sizes (e.g., $100^3$, $200^3$, $300^3$ voxels) and simulation durations
+    \item \textbf{Memory usage}: Peak memory consumption as a function of grid size, including field arrays, material property arrays, and auxiliary data structures
+    \item \textbf{Scalability}: Computational complexity analysis with respect to grid resolution ($O(N^3)$ for spatial discretization) and time steps ($O(N_t)$ for temporal discretization)
+    \item \textbf{Vectorization efficiency}: Evaluation of NumPy vectorized operations versus explicit loops, and potential GPU acceleration using PyTorch for large-scale simulations
+    \item \textbf{Algorithmic efficiency}: Analysis of time-stepping overhead, boundary condition application, and source injection computational costs
+\end{itemize}
+
+These metrics will ensure feasibility for high-resolution, patient-specific 3D simulations and identify potential bottlenecks for optimization.
+
+\subsubsection{Data Analysis and Validation}
+
+Validation of the FDTD solver will be performed through multiple approaches:
+
+\begin{itemize}
+    \item \textbf{Analytical validation}: Comparison with analytical solutions for canonical problems (e.g., plane wave propagation in homogeneous media, spherical wave radiation)
+    \item \textbf{Bibliographic validation}: Comparison of SAR distributions and field patterns against published DRH simulations from \cite{houle2019} and other literature sources
+    \item \textbf{Benchmark cases}: Testing against standard FDTD benchmark problems to verify numerical accuracy and convergence
+    \item \textbf{Visualization}: 3D visualization of SAR distributions and field patterns to qualitatively assess spatial accuracy and identify artifacts
+    \item \textbf{Quantitative metrics}: Statistical comparisons including mean SAR in tumor regions, maximum SAR in healthy tissues, and SAR distribution uniformity metrics to quantify accuracy relative to reference data
+\end{itemize}
+
+\subsection{Scope and Limitations}
+
+The scope of this study is defined by the following limitations:
+
+\begin{itemize}
+    \item \textbf{Frequency-independent tissue properties}: The simulation assumes constant dielectric properties at a fixed operating frequency, reflecting typical clinical DRH systems that operate in narrow frequency bands (typically 50--150 MHz). This approximation is valid when tissue property variations over the operating bandwidth are negligible.
+    \item \textbf{Voxel-based segmentation}: Patient-specific anatomical variability is limited to voxel-based tissue segmentation from CT or MRI data. Sub-voxel resolution and tissue boundary smoothing are not considered.
+\item \textbf{Simplified thermal modeling}: Temperature distributions are computed using the Pennes bioheat equation with constant thermal properties. Blood perfusion effects are either neglected or modeled with constant perfusion rates (no thermoregulatory feedback). Temperature-dependent dielectric and thermal properties are not included. The EM and thermal solvers are loosely coupled (one-way: EM $\rightarrow$ thermal), with no feedback from temperature to electromagnetic properties.
+    \item \textbf{No dispersive models}: Frequency-dependent dispersive tissue models (Debye or Lorentz formulations) are excluded from the current scope, though they may be incorporated in future extensions for broadband applications.
+    \item \textbf{Computational constraints}: Practical simulations are limited by available computational resources. Typical grid sizes may range from $100^3$ to $500^3$ voxels, depending on resolution requirements and hardware capabilities.
+\end{itemize}
+
+\subsection{Summary}
+
+This methodology establishes a code-intensive, fully 3D FDTD framework for DRH treatment planning. It combines patient-specific tissue modeling, field computation, SAR mapping, and antenna optimization, providing a solid foundation for research in computational hyperthermia and enabling reproducible simulations for academic and clinical purposes.
+
+\newpage
+
+% REFERENCES
+\begin{thebibliography}{99}
+
+\bibitem{berenger1994}
+Berenger, J. P. (1994). A perfectly matched layer for the absorption of electromagnetic waves. \textit{Journal of Computational Physics}, \textit{114}(2), 185--200.
+
+\bibitem{houle2019}
+Houle, J. J., \& Sullivan, D. M. (2019). \textit{Electromagnetic Simulation Using the FDTD Method with Python}. SciTech Publishing.
+
+\bibitem{taflove2005}
+Taflove, A., \& Hagness, S. C. (2005). \textit{Computational Electrodynamics: The Finite-Difference Time-Domain Method} (3rd ed.). Artech House.
+
+\bibitem{vanrhoon2013}
+van Rhoon, G. C., Franckena, M., \& Hornsleth, S. N. (2013). Tumour heating techniques for cancer treatment. \textit{International Journal of Hyperthermia}, \textit{29}(3), 186--204.
+
+\bibitem{paulides2014}
+Paulides, M. M., Stauffer, P. R., Neufeld, E., et al. (2014). Simulation techniques in hyperthermia treatment planning. \textit{International Journal of Hyperthermia}, \textit{30}(6), 346--357.
+
+\bibitem{icnirp2010}
+ICNIRP. (2010). Guidelines for limiting exposure to time-varying electric and magnetic fields. \textit{Health Physics}, \textit{99}(6), 818--836.
+
+\bibitem{wust2002}
+Wust, P., Hildebrandt, B., Sreenivasa, G., et al. (2002). Hyperthermia in combined treatment of cancer. \textit{The Lancet Oncology}, \textit{3}(8), 487--497.
+
+\bibitem{vanderzee2002}
+van der Zee, J. (2002). Heating the patient: a promising approach? \textit{Annals of Oncology}, \textit{13}(8), 1173--1184.
+
+\end{thebibliography}
+
+\end{document}
+
